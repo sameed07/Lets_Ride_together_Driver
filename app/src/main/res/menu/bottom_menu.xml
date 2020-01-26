@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bot_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bot_msg"
+        android:icon="@drawable/ic_message_black_24dp"
+        android:title="Chat"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bot_post_ride"
+        android:icon="@drawable/live_tracking"
+        android:title="Live Rides"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bot_requests"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Notification"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/bot_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="Account"
+        app:showAsAction="always" />
+</menu>
