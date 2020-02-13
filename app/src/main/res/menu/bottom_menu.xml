@@ -14,8 +14,8 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/bot_post_ride"
-        android:icon="@drawable/live_tracking"
-        android:title="Live Rides"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="Rides"
         app:showAsAction="always" />
     <item
         android:id="@+id/bot_requests"

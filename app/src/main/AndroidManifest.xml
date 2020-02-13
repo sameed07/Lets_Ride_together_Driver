@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lets_ride_together_driver">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,18 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CarpoolMainActivity"></activity>
-        <activity android:name=".Instant_HomeActivity" />
-        <activity android:name=".SelectModeActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".SignupActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.RegistrationSubActivity" />
+        <activity android:name=".Activities.VehicalDetailActivity" />
+        <activity android:name=".Activities.CarpoolMainActivity" />
+        <activity android:name=".Activities.Instant_HomeActivity" />
+        <activity android:name=".Activities.SelectModeActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SignupActivity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

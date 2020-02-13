@@ -1,37 +1,22 @@
-package com.example.lets_ride_together_driver;
+package com.example.lets_ride_together_driver.Activities;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.single.PermissionListener;
-
-import java.util.List;
+import com.example.lets_ride_together_driver.R;
 
 public class SelectModeActivity extends AppCompatActivity {
 
@@ -75,7 +60,8 @@ public class SelectModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                startActivity(new Intent(SelectModeActivity.this,Instant_HomeActivity.class));
+                finish();
             }
 
         });
@@ -88,7 +74,8 @@ public class SelectModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                startActivity(new Intent(SelectModeActivity.this,CarpoolMainActivity.class));
+                finish();
             }
 
 

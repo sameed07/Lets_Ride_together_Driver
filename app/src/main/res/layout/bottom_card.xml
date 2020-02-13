@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="12dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12sp"
+          >
+
+            <Switch
+                android:id="@+id/regularTripsw"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="12sp"
+                android:layout_marginRight="32dp"
+                android:layout_weight="1.0"
+                android:checked="true"
+                android:paddingLeft="12sp"
+                android:paddingRight="5.0dip"
+                android:switchMinWidth="0.0dip"
+                android:text="Online "
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:thumb="@drawable/switch_thumb"
+                android:thumbTextPadding="10.0dip"
+                android:track="@drawable/switch_track" />
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_toRightOf="@+id/regularTripsw"
+                android:layout_marginRight="12sp"
+                android:background="@drawable/btn_signin_drawble"
+                android:text="Find User"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

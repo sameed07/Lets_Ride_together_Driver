@@ -1,4 +1,4 @@
-package com.example.lets_ride_together_driver;
+package com.example.lets_ride_together_driver.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.lets_ride_together_driver.R;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this,SelectModeActivity.class));
+                startActivity(new Intent(SignupActivity.this,VehicalDetailActivity.class));
                 finish();
             }
         });
