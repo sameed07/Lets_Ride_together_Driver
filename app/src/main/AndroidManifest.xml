@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.VerificationActivity"></activity>
         <activity android:name=".Activities.RegistrationSubActivity" />
         <activity android:name=".Activities.VehicalDetailActivity" />
         <activity android:name=".Activities.CarpoolMainActivity" />

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.VerificationActivity">
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Verfication"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanks!"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We are sending code to "
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/textPhonenumber"
+            android:textColor="#2196F3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+92 3075712075"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+            <!--            android:paddingLeft="70dp"-->
+            <!--            android:paddingRight="70dp"-->
+
+
+            <EditText
+                android:padding="12dp"
+                android:id="@+id/edt_code"
+                android:layout_width="250dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12sp"
+                android:hint="Enter code here"
+                android:background="@drawable/phone_authenticaion_background"/>
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/edt_num1"-->
+            <!--                android:layout_width="80dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@drawable/phone_authenticaion_background"-->
+            <!--                android:gravity="center"-->
+            <!--                android:inputType="number"-->
+            <!--                android:maxLength="1"-->
+            <!--                android:textSize="40dp" />-->
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/edt_num2"-->
+            <!--                android:layout_width="80dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@drawable/phone_authenticaion_background"-->
+            <!--                android:gravity="center"-->
+            <!--                android:inputType="number"-->
+            <!--                android:maxLength="1"-->
+            <!--                android:textSize="40dp" />-->
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/edt_num3"-->
+            <!--                android:layout_width="80dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@drawable/phone_authenticaion_background"-->
+            <!--                android:gravity="center"-->
+            <!--                android:inputType="number"-->
+            <!--                android:maxLength="1"-->
+            <!--                android:textSize="40dp" />-->
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/edt_num4"-->
+            <!--                android:layout_width="80dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@drawable/phone_authenticaion_background"-->
+            <!--                android:gravity="center"-->
+            <!--                android:inputType="number"-->
+            <!--                android:maxLength="1"-->
+            <!--                android:textSize="40dp" />-->
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btnVerify"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="Verify Code"
+        android:background="@drawable/btn_signin_drawble"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"/>
+
+
+    <ProgressBar
+        android:layout_below="@+id/top_layout"
+        android:layout_marginTop="100dp"
+
+        android:visibility="gone"
+        android:id="@+id/mProgressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>
