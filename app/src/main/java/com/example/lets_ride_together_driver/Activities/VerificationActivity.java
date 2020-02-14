@@ -129,7 +129,7 @@ public class VerificationActivity extends AppCompatActivity {
                             mProgressbar.setVisibility(View.GONE);
 
                             sendDataToFirebase();
-                            Intent intent = new Intent(VerificationActivity.this, SelectModeActivity.class);
+                            Intent intent = new Intent(VerificationActivity.this, RegistrationSubActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             ///Toast.makeText(VerificationActivity.this, "Registered Successfully!!", Toast.LENGTH_SHORT).show();
@@ -213,6 +213,7 @@ public class VerificationActivity extends AppCompatActivity {
         user.setCar_type(cartype);
         user.setVehicle_name(vehicle_name);
         user.setVehicle_number(vehicle_number);
+        user.setProfile_status(false);
         user.setuId(mAuth.getCurrentUser().getUid());
 
         Common.currentUser = user.getuId();

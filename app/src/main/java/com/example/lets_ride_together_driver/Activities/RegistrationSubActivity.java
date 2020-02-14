@@ -20,7 +20,7 @@ public class RegistrationSubActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistrationSubActivity.this,SelectModeActivity.class));
+                startActivity(new Intent(RegistrationSubActivity.this,LoginActivity.class));
                 finish();
             }
         });

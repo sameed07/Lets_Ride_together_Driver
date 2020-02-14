@@ -13,6 +13,7 @@ public class UserModel  {
     private String vehicle_name;
     private String vehicle_number;
     private String car_type;
+    private Boolean profile_status = false;
 
     public UserModel() {
     }
@@ -29,6 +30,14 @@ public class UserModel  {
         this.vehicle_name = vehicle_name;
         this.vehicle_number = vehicle_number;
         this.car_type = car_type;
+    }
+
+    public Boolean getProfile_status() {
+        return profile_status;
+    }
+
+    public void setProfile_status(Boolean profile_status) {
+        this.profile_status = profile_status;
     }
 
     public String getuId() {
