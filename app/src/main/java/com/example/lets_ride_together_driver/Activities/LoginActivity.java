@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lets_ride_together_driver.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txt_signup;
     private Button btn_signin;
     private EditText edt_email,edt_password;
+    private ProgressBar mProgressbar;
+    private RelativeLayout relativeLayout;
 
     //firebase
     private FirebaseDatabase db;
@@ -40,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_signin = findViewById(R.id.signin_btn);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
+        mProgressbar = findViewById(R.id.mProgressbar);
+        relativeLayout = findViewById(R.id.my_id);
 
         db = FirebaseDatabase.getInstance();
         mRef = db.getReference("Users").child("Drivers");
@@ -57,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mProgressbar.setVisibility(View.VISIBLE);
                 final String email = edt_email.getText().toString();
                 final String password = edt_password.getText().toString();
 
@@ -75,10 +84,21 @@ public class LoginActivity extends AppCompatActivity {
 
                                 UserModel model = data.getValue(UserModel.class);
                                 if(email.equals(model.getEmail()) && password.equals(model.getPassword())) {
+
+                                    if(model.getProfile_status()){
                                     Log.i("dxdiag", "login success");
 
+                                    mProgressbar.setVisibility(View.GONE);
                                     Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                     return;
+                                }else{
+
+                                        Snackbar snackbar = Snackbar
+                                                .make(relativeLayout, "your account disable by admin", Snackbar.LENGTH_LONG);
+
+                                        snackbar.show();
+                                        mProgressbar.setVisibility(View.GONE);
+                                    }
                                 }
                                 else {
 
