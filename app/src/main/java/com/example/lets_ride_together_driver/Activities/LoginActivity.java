@@ -16,12 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lets_ride_together_driver.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import Common.Common;
 import Model.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     //firebase
     private FirebaseDatabase db;
     private DatabaseReference mRef;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.i("dxdiag", "login success");
 
                                     mProgressbar.setVisibility(View.GONE);
+
+                                    //Common.currentDriver.setCar_type(model.getCar_type());
+                                        Common.currentUser = mAuth.getCurrentUser().getUid();
+                                    startActivity(new Intent(LoginActivity.this,SelectModeActivity.class));
                                     Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                     return;
                                 }else{
@@ -104,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     Toast.makeText(LoginActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
-
+                                    mProgressbar.setVisibility(View.GONE);
                                 }
                             }
                         }

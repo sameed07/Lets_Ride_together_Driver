@@ -33,37 +33,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="6">
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/colorPrimary"
-                    android:layout_marginLeft="14dp"/>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="6">-->
+<!--                <View-->
+<!--                    android:layout_width="2dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:background="@color/colorPrimary"-->
+<!--                    android:layout_marginLeft="14dp"/>-->
 
 
 
-                <fragment
+<!--                <fragment-->
 
-                    android:id="@+id/place_Location"
-                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="60dp"
-                    />
+<!--                    android:id="@+id/place_Location"-->
+<!--                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="32dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_marginRight="60dp"-->
+<!--                    />-->
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_swap_horiz_black_24dp"/>
+<!--                <ImageView-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:src="@drawable/ic_swap_horiz_black_24dp"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
 
@@ -83,20 +83,20 @@
         android:layout_height="30dp"
         android:src="@drawable/ic_swap_horiz_black_24dp"/>
 
-    <ImageView
-        android:id="@+id/car_one"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/driver_car"
-        android:layout_centerInParent="true"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/car_one"-->
+<!--        android:layout_width="36dp"-->
+<!--        android:layout_height="36dp"-->
+<!--        android:src="@drawable/driver_car"-->
+<!--        android:layout_centerInParent="true"/>-->
 
-    <ImageView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/driver_car"
-        android:layout_below="@+id/car_one"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="30dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="36dp"-->
+<!--        android:layout_height="36dp"-->
+<!--        android:src="@drawable/driver_car"-->
+<!--        android:layout_below="@+id/car_one"-->
+<!--        android:layout_marginLeft="90dp"-->
+<!--        android:layout_marginTop="30dp"/>-->
 
 
 
