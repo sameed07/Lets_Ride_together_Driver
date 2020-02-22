@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign in to continue"
+                android:text="Sign in as Driver"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="52dp"
@@ -39,6 +39,7 @@
 
 
             <EditText
+                android:text="test@gmail.com"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
@@ -54,6 +55,7 @@
                 android:inputType="textEmailAddress"/>
 
             <EditText
+                android:text="123456"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"

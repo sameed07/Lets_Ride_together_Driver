@@ -39,12 +39,14 @@
 
 
             <Button
+                android:id="@+id/btn_switch_carpool"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_toRightOf="@+id/offline_switch"
                 android:layout_marginRight="12sp"
                 android:background="@drawable/btn_signin_drawble"
-                android:text="Find User"
+                android:text="Switch to Carpool"
+                android:textAllCaps="false"
                 android:textColor="@color/white"/>
 
         </RelativeLayout>

@@ -87,8 +87,8 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
     private PlaceAutocompleteFragment places;
 
     //widgets
-    private ImageView switch_carpool;
-    private Button btnPickupRequest;
+
+    private Button switch_carpool;
     private Switch offline_switch;
 
 
@@ -110,10 +110,10 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
         setContentView(R.layout.activity_instant__home);
 
         database = FirebaseDatabase.getInstance();
-        mRef = database.getReference("Users").child("Drivers");
+        mRef = database.getReference("Online_Drivers");
 
         mAuth = FirebaseAuth.getInstance();
-        uId = Common.currentUser;
+        uId = Common.currentDriver.getuId();
 
 //
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -121,7 +121,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 //        setSupportActionBar(toolbar);
 
         offline_switch = findViewById(R.id.offline_switch);
-        switch_carpool = findViewById(R.id.switch_carpool);
+        switch_carpool = findViewById(R.id.btn_switch_carpool);
 
         switch_carpool.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +141,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 
                     mMap.clear();
                     Toast.makeText(Instant_HomeActivity.this, "Offline", Toast.LENGTH_SHORT).show();
-                    mRef.child(mAuth.getCurrentUser().getUid()).child("Latlng").removeValue();
+                    mRef.child(uId).removeValue();
 
                 }else{
                     fetchLocation();
@@ -289,8 +289,10 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
             Map<String, Object> data = new HashMap<>();
             data.put("lat", mlastLocation.getLatitude());
             data.put("lng", mlastLocation.getLongitude());
+            data.put("car_type",Common.currentDriver.getCar_type());
 
-            mRef.child(mAuth.getCurrentUser().getUid()).child("Latlng").setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+            mRef.child(uId).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
 

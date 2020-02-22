@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     //firebase
     private FirebaseDatabase db;
     private DatabaseReference mRef;
-    FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (edt_email.getText().toString().equals("") && edt_password.getText().toString().equals("")){
                     Toast.makeText(LoginActivity.this, "Fields must not be empty", Toast.LENGTH_SHORT).show();
+                    mProgressbar.setVisibility(View.GONE);
                 }
                 else {
 
@@ -93,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     mProgressbar.setVisibility(View.GONE);
 
-                                    //Common.currentDriver.setCar_type(model.getCar_type());
-                                        Common.currentUser = mAuth.getCurrentUser().getUid();
+                                    Common.currentDriver = model;
+
                                     startActivity(new Intent(LoginActivity.this,SelectModeActivity.class));
                                     Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                     return;

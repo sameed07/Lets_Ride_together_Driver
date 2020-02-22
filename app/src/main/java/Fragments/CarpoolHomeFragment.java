@@ -1,19 +1,37 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.lets_ride_together_driver.Activities.ProfileActivity;
 import com.example.lets_ride_together_driver.R;
+
+import java.util.ArrayList;
+
+import Adapter.PassengerPostsAdapter;
+import Model.PassengerPostedModel;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class CarpoolHomeFragment extends Fragment {
+
+    private RecyclerView postlist_recycler;
+    private RecyclerView.LayoutManager layoutManager;
+    private TextView txt_toolbar;
+    private CircleImageView user_profileImage;
 
 
     public CarpoolHomeFragment() {
@@ -26,6 +44,47 @@ public class CarpoolHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view  =  inflater.inflate(R.layout.fragment_carpool_home_fragmet, container, false);
 
+        postlist_recycler = view.findViewById(R.id.post_ride_recyclerview);
+        layoutManager = new LinearLayoutManager(getContext());
+        postlist_recycler.setLayoutManager(layoutManager);
+        txt_toolbar = view.findViewById(R.id.txt_toolbar);
+        txt_toolbar.setText("User Name");
+        user_profileImage = view.findViewById(R.id.user_profile_img);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+
+        user_profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ProfileActivity.class));
+            }
+        });
+
+
+        //passing dummy data
+        ArrayList<PassengerPostedModel> postList = new ArrayList<>();
+
+        postList.add(new PassengerPostedModel("After Earth"
+                ,"Bike","12-3-2020","09:00 PM", "Round Trip",
+                "Pindi Road Kohat Cantt","Kohat University of science and technology"));
+        postList.add(new PassengerPostedModel("After Earth"
+                ,"Bike","12-3-2020","09:00 PM", "Round Trip",
+                "Pindi Road Kohat Cantt","Kohat University of science and technology"));
+        postList.add(new PassengerPostedModel("After Earth"
+                ,"Bike","12-3-2020","09:00 PM", "Round Trip",
+                "Pindi Road Kohat Cantt","Kohat University of science and technology"));
+        postList.add(new PassengerPostedModel("After Earth"
+                ,"Bike","12-3-2020","09:00 PM", "Round Trip",
+                "Pindi Road Kohat Cantt","Kohat University of science and technology"));
+        postList.add(new PassengerPostedModel("After Earth"
+                ,"Bike","12-3-2020","09:00 PM", "Round Trip",
+                "Pindi Road Kohat Cantt","Kohat University of science and technology"));
+
+
+
+        PassengerPostsAdapter adapter = new PassengerPostsAdapter(getContext(), postList);
+        postlist_recycler.setAdapter(adapter);
 
 
         return view;
