@@ -10,8 +10,8 @@
     <color name="black">#000000</color>
     <color name="material_dark">#121212</color>
     <color name="duskYellow">#DDAA10</color>
-
-
+    <color name="low_opacity_green">#8340CF47</color>
+    <color name="bg_color">#F8F8F8</color>
 
 </resources>
 

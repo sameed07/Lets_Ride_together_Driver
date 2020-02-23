@@ -19,7 +19,7 @@
             android:background="@color/off_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Personal Detail"
+            android:text="Personal Info"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginTop="6dp"
