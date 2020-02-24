@@ -103,7 +103,14 @@ public class EditProfile extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                uploadImage();
+                if(edt_username.getText().toString().equals("")){
+
+                    Toast.makeText(EditProfile.this, "Enter user name", Toast.LENGTH_SHORT).show();
+                }else {
+
+
+                    uploadImage();
+                }
             }
         });
 
@@ -205,30 +212,41 @@ public class EditProfile extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
-            ref.putFile(filePath)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            Toast.makeText(EditProfile.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
-                            Toast.makeText(EditProfile.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                        }
-                    });
+            final StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+
+            UploadTask uploadTask = ref.putFile(filePath);
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+
+                        mUrl = downloadUri.toString();
+
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("name", edt_username.getText().toString());
+                        map.put("profile_img", mUrl);
+                        mRef.child(Common.currentDriver.getuId()).updateChildren(map);
+                        progressDialog.dismiss();
+                        Toast.makeText(EditProfile.this, "Saved", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(EditProfile.this,ProfileActivity.class));
+
+                    } else {
+                        Toast.makeText(EditProfile.this,"Error: "+ task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
     }
 

@@ -3,6 +3,7 @@ package Model;
 public class UserModel  {
 
 
+    private String profile_img;
     private String uId;
     private String name;
     private String email;
@@ -18,7 +19,7 @@ public class UserModel  {
     public UserModel() {
     }
 
-    public UserModel(String uId, String name, String email, String phone, String password,
+    public UserModel(String profile_img,String uId, String name, String email, String phone, String password,
                      String city, String cnic, String vehicle_name, String vehicle_number, String car_type) {
         this.uId = uId;
         this.name = name;
@@ -30,6 +31,15 @@ public class UserModel  {
         this.vehicle_name = vehicle_name;
         this.vehicle_number = vehicle_number;
         this.car_type = car_type;
+        this.profile_img = profile_img;
+    }
+
+    public String getProfile_img() {
+        return profile_img;
+    }
+
+    public void setProfile_img(String profile_img) {
+        this.profile_img = profile_img;
     }
 
     public Boolean getProfile_status() {
