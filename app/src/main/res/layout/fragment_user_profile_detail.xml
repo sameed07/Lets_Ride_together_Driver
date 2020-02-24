@@ -141,7 +141,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_local_phone_black_24dp"/>
+                android:src="@drawable/ic_directions_car_black_24dp"/>
 
             <TextView
                 android:layout_marginLeft="8dp"
@@ -171,7 +171,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/profile_email"/>
+                android:src="@drawable/ic_directions_car_black_24dp"/>
 
             <TextView
                 android:layout_marginLeft="8dp"
@@ -201,7 +201,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_location_city_black_24dp"/>
+                android:src="@drawable/ic_assignment_black_24dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -212,7 +212,7 @@ public class EditProfile extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+            final StorageReference ref = storageReference.child(Common.currentDriver.getuId()).child(UUID.randomUUID().toString());
 
             UploadTask uploadTask = ref.putFile(filePath);
             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -268,12 +268,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    public byte[] getByte(Bitmap bitmap){
 
-        ByteArrayOutputStream mArray = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,mArray);
-        return mArray.toByteArray();
-    }
 
     private void askForPermission(String permission, Integer requestCode) {
         if (ContextCompat.checkSelfPermission(EditProfile.this, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -290,7 +285,7 @@ public class EditProfile extends AppCompatActivity {
                 ActivityCompat.requestPermissions(EditProfile.this, new String[]{permission}, requestCode);
             }
         } else {
-            Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
         }
     }
 

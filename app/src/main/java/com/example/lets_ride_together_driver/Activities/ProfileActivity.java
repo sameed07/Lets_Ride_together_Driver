@@ -114,8 +114,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                     UserModel model = data.getValue(UserModel.class);
                     txt_name.setText(model.getName());
-                    Picasso.get().load(model.getProfile_img()).into(driver_img);
 
+                    if(model.getProfile_img() == null){
+                        driver_img.setImageResource(R.drawable.default_pic);
+                    }else {
+                        Picasso.get().load(model.getProfile_img()).into(driver_img);
+                    }
 
                 }
             }

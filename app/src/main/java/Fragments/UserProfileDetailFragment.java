@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import Common.Common;
 import Model.UserModel;
 
 
@@ -40,7 +41,7 @@ public class UserProfileDetailFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_user_profile_detail, container, false);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference("Users").child("Drivers");
+        mRef = mDatabase.getReference("Users").child("Drivers").child(Common.currentDriver.getuId());
 
         txt_email = view.findViewById(R.id.txt_email);
         txt_phone = view.findViewById(R.id.txt_phone);
@@ -53,9 +54,9 @@ public class UserProfileDetailFragment extends Fragment {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                    UserModel model = data.getValue(UserModel.class);
+
+                    UserModel model = dataSnapshot.getValue(UserModel.class);
 
                     txt_email.setText(model.getEmail());
                     txt_phone.setText(model.getPhone());
@@ -63,7 +64,7 @@ public class UserProfileDetailFragment extends Fragment {
                     txt_vehicl_type.setText(model.getCar_type());
                     txt_vehicle_name.setText(model.getVehicle_name());
                     txt_vehicle_number.setText(model.getVehicle_number());
-                }
+
             }
 
             @Override
