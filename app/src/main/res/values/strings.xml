@@ -6,6 +6,10 @@
     <string name="text_location_permission">You must enable the location to use this app</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC9pxEiVyuGXjWMhUmhZYd-EDgVqLLViuk</string>
 
+    <string name="google_direction_api">AIzaSyC7aO2ri5wsZEBhI3iqm70A1-m7vTYmehg</string>
+    <string name="google_direction_api2">AIzaSyClL83OB7iddv9WPxS2s3Bw6txnpvDRvak</string>
+    <string name="title_activity_driver_tracking">Map</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="submit_text">Your documents has been sent to admin. You will receive an email once your documents are verified.</string>

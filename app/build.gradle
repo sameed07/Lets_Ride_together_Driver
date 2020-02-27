@@ -39,6 +39,9 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.1.0-alpha04'
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 
     //phone code picker
     implementation 'com.hbb20:ccp:2.3.4'

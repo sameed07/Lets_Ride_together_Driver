@@ -31,39 +31,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:weightSum="6">-->
-<!--                <View-->
-<!--                    android:layout_width="2dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:background="@color/colorPrimary"-->
-<!--                    android:layout_marginLeft="14dp"/>-->
+            <EditText
+                android:layout_marginRight="18dp"
+                android:hint="Search location"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:id="@+id/edt_search_location"/>
 
-
-
-<!--                <fragment-->
-
-<!--                    android:id="@+id/place_Location"-->
-<!--                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:layout_marginBottom="10dp"-->
-<!--                    android:layout_marginRight="60dp"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="30dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:src="@drawable/ic_swap_horiz_black_24dp"/>-->
-
-<!--            </LinearLayout>-->
+            <Button
+                android:id="@+id/btn_go"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_signin_drawble"
+                android:layout_marginLeft="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="go"
+                />
 
 
 

@@ -3,6 +3,8 @@ package Common;
 import android.location.Location;
 
 import Model.UserModel;
+import Remote.IGoogleApi;
+import Remote.RetrofitClient;
 
 public class Common {
 
@@ -39,10 +41,10 @@ public class Common {
     }
 
 
-//    public static IGoogleAPI getGoogleAPI() {
-//
-//        return RetrofitClient.getClient(baseURL).create(IGoogleAPI.class);
-//    }
+    public static IGoogleApi getGoogleAPI() {
+
+        return RetrofitClient.getClient(baseURL).create(IGoogleApi.class);
+    }
 //
 //    public static IFCMService getFCMService() {
 //
