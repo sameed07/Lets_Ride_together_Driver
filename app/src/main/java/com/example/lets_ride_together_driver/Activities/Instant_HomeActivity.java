@@ -35,13 +35,17 @@ import android.widget.Toast;
 
 import com.example.lets_ride_together_driver.R;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -203,8 +207,32 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference("Online_Drivers");
 
-        btnGo = findViewById(R.id.btn_go);
-        edt_search_location = findViewById(R.id.edt_search_location);
+        places = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        places.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+
+                if(offline_switch.isChecked()){
+
+                    destination = place.getAddress().toString();
+                    destination = destination.replace("","+");
+
+                    getDirections();
+                }else{
+
+                    Toast.makeText(Instant_HomeActivity.this, "Please Change your status to Online", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onError(Status status) {
+
+                Toast.makeText(Instant_HomeActivity.this, "" + status.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         uId = Common.currentDriver.getuId();
@@ -213,17 +241,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
         mService = Common.getGoogleAPI();
 
         polyLineList = new ArrayList<>();
-        btnGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                destination = edt_search_location.getText().toString();
-                destination = destination.replace("",  "+");// replace space with + for fetch the data
-
-                Log.d("myTag",destination);
-                getDirections();
-            }
-        });
 //
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //
