@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import com.google.android.libraries.places.api.Places;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,10 +43,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -64,8 +63,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,6 +84,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,8 +104,16 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
     //map related
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    private PlacesClient placesClient;
+    //private PlacesClient placesClient;
     private List<AutocompletePrediction> predictionList;
+
+    int AUTOCOMPLETE_REQUEST_CODE = 1;
+
+    // Set the fields to specify which types of place data to
+// return after the user has made a selection.
+
+
+
 
     private Location mlastLocation;
     private LocationCallback locationCallback;
@@ -107,8 +121,9 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
     private LocationRequest locationRequest;
     private Marker currentLocationmMarker;
 
-    AutocompleteFilter typeFilter;
-    private PlaceAutocompleteFragment places;
+
+
+
 
     //widgets
 
@@ -203,19 +218,37 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_instant__home);
+        // Create a new Places client instance
+
 
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference("Online_Drivers");
 
-        places = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        Places.initialize(getApplicationContext(), "AIzaSyC7aO2ri5wsZEBhI3iqm70A1-m7vTYmehg");
+// Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        places.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+
+// Specify the types of place data to return.
+       ///
+
+// Set up a PlaceSelectionListener to handle the response.
+
+        PlacesClient placesClient = Places.createClient(this);
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onPlaceSelected(Place place) {
+            public void onPlaceSelected(@NonNull Place place) {
 
                 if(offline_switch.isChecked()){
 
-                    destination = place.getAddress().toString();
+               //     Toast.makeText(Instant_HomeActivity.this, "Place" + place.getName(), Toast.LENGTH_SHORT).show();
+
+                    destination = place.getName();
                     destination = destination.replace("","+");
 
                     getDirections();
@@ -223,15 +256,43 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 
                     Toast.makeText(Instant_HomeActivity.this, "Please Change your status to Online", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
-            public void onError(Status status) {
+            public void onError(@NonNull Status status) {
 
-                Toast.makeText(Instant_HomeActivity.this, "" + status.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Instant_HomeActivity.this, "" + status.toString(), Toast.LENGTH_LONG).show();
             }
         });
+
+       //places = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+
+
+//        places.
+//        places.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//
+//                if(offline_switch.isChecked()){
+//
+//                    destination = place.getAddress().toString();
+//                    destination = destination.replace("","+");
+//
+//                    getDirections();
+//                }else{
+//
+//                    Toast.makeText(Instant_HomeActivity.this, "Please Change your status to Online", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//
+//                Toast.makeText(Instant_HomeActivity.this, "" + status.toString(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -324,9 +385,9 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
                             LatLngBounds.Builder builder = new LatLngBounds.Builder();
                             for(LatLng latLng: polyLineList)
                                 builder.include(latLng);
-                            LatLngBounds bounds = builder.build();
-                            CameraUpdate mCameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds,2);
-                            mMap.animateCamera(mCameraUpdate);
+                                LatLngBounds bounds = builder.build();
+                                CameraUpdate mCameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 2);
+                                mMap.animateCamera(mCameraUpdate);
 
                             polylineOptions = new PolylineOptions();
                             polylineOptions.color(Color.GRAY);
@@ -450,7 +511,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
             public void onSuccess(Location location) {
                 if (location != null) {
                     mlastLocation = location;
-                   // Toast.makeText(getApplicationContext(), mlastLocation.getLatitude() + "" + mlastLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), mlastLocation.getLatitude() + "" + mlastLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                     SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
                     assert supportMapFragment != null;
                     supportMapFragment.getMapAsync(Instant_HomeActivity.this);
@@ -495,7 +556,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.driver_car));
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-            //  mMap.getUiSettings().setMyLocationButtonEnabled(true);
+              mMap.getUiSettings().setMyLocationButtonEnabled(true);
             googleMap.addMarker(markerOptions);
 
             driverLatLng();
@@ -695,5 +756,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
         } else
             return true;
     }
+
+
 
 }

@@ -34,7 +34,8 @@
             android:orientation="horizontal">
 
             <fragment
-                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                android:name=
+                    "com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_weight="5"
                 android:layout_marginRight="18dp"
                 android:hint="Search location"
