@@ -142,6 +142,7 @@
 
                             >
                             <EditText
+                                android:id="@+id/edt_starting"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Starting point"
@@ -156,6 +157,7 @@
                                 android:layout_marginRight="12dp"/>
 
                             <EditText
+                                android:id="@+id/edt_ending"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="End point"
@@ -328,17 +330,35 @@
                 android:layout_marginLeft="32dp"
                 android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/txt_datepicker"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Set Date And time"
-                android:layout_marginTop="14dp"
-                android:textSize="10dp"
-                android:layout_marginLeft="32dp"
-                android:background="@drawable/btn_background"
-                android:padding="12dp"/>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
 
+               <TextView
+                   android:id="@+id/txt_datepicker"
+                   android:layout_width="wrap_content"
+                   android:layout_height="38dp"
+                   android:text="Set Date"
+                   android:layout_marginTop="14dp"
+                   android:textSize="12dp"
+                   android:textStyle="bold"
+                   android:layout_marginLeft="32dp"
+                   android:background="@drawable/btn_background"
+                   android:padding="12dp"/>
+               <TextView
+                   android:id="@+id/txt_timepicker"
+                   android:layout_width="85dp"
+                   android:layout_height="38dp"
+                   android:text="Set time"
+                   android:layout_marginTop="14dp"
+                   android:textSize="12dp"
+                   android:textStyle="bold"
+                   android:layout_marginLeft="12dp"
+                   android:background="@drawable/btn_background"
+                   android:padding="12dp"
+                   android:visibility="gone"/>
+
+           </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -353,9 +373,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="32dp"
-                android:id="@+id/radioGroup">
+                android:id="@+id/rd_trip">
 
                 <RadioButton
+                    android:checked="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="One Way"
@@ -401,10 +422,10 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="32dp"
-                    android:id="@+id/seat_radio">
+                    android:id="@+id/rd_seats">
 
                     <RadioButton
-
+                        android:checked="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -432,10 +453,39 @@
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="4dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Fare Amount"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="32dp"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:textSize="12sp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:layout_marginLeft="32dp"
+                    android:layout_width="110dp"
+                    android:layout_height="42dp"
+                    android:hint="Enter Amount"
+                    android:id="@+id/edt_amount"/>
+
+            </LinearLayout>
         </LinearLayout>
 
 
         <Button
+            android:id="@+id/post_btn"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/btn_signin_drawble"
