@@ -281,13 +281,16 @@ public class PostRequestActivity extends AppCompatActivity {
             String name = Common.currentDriver.getName();
             String profile_url = Common.currentDriver.getProfile_img();
             String carName = Common.currentDriver.getCar_type();
-            String price = edt_starting.getText().toString();
+            String price = edt_fare.getText().toString();
             String seats = rd_select_seat.getText().toString();
             String trip = rd_select_trip.getText().toString();
             String id = Common.currentDriver.getuId();
             String date = txt_datepicker.getText().toString();
             String time = txt_timePicker.getText().toString();
             String vehicle;
+            String staring_point = edt_starting.getText().toString();
+            String ending = edt_ending.getText().toString();
+
 
             if(isCar){
 
@@ -332,17 +335,16 @@ public class PostRequestActivity extends AppCompatActivity {
                 }
 
                 Map<String , Object> map = new HashMap<>();
-                map.put("name",name);
-                map.put("vehicle_type",carName);
+
                 map.put("price",price);
                 map.put("seats",seats);
                 map.put("trip",trip);
                 map.put("id",id);
                 map.put("date",date);
-                map.put("time",time);
                 map.put("schedule", regulartripstring);
-                map.put("profile_img",profile_url);
                 map.put("ride_type",vehicle);
+                map.put("starting_point",staring_point);
+                map.put("ending_point", ending);
 
                 mRef.push().setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import Adapter.MyViewPageAdapter;
+import Common.Common;
 import Fragments.UserProfileDetailFragment;
 import Fragments.UserReviewFragment;
 import Model.UserModel;
@@ -73,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference("Users").child("Drivers");
+        mRef = mDatabase.getReference("Users").child("Drivers").child(Common.currentDriver.getuId());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference("Images");
 
@@ -110,9 +111,9 @@ public class ProfileActivity extends AppCompatActivity {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                    UserModel model = data.getValue(UserModel.class);
+
+                    UserModel model = dataSnapshot.getValue(UserModel.class);
                     txt_name.setText(model.getName());
 
                     if(model.getProfile_img() == null){
@@ -122,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
                     }
 
                 }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

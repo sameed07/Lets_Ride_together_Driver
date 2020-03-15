@@ -5,17 +5,26 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lets_ride_together_driver.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.PassengerPostedModel;
+import Model.UserModel;
 
 public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAdapter.ViewHolder> {
 
@@ -39,26 +48,48 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PassengerPostsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PassengerPostsAdapter.ViewHolder holder, int position) {
 
         PassengerPostedModel currentItem = exampleListFull.get(position);
 
-        holder.txt_driverName.setText(currentItem.getPassenger_name());
-//        holder.txt_carType.setText(currentItem.getVehicle_type());
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference mRef = mDatabase.getReference("Users").child("Passengers").child(currentItem.getId());
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserModel model = dataSnapshot.getValue(UserModel.class);
+                holder.txt_driverName.setText(model.getName());
 
-        holder.txt_currentLocation.setText(currentItem.getStarting_lat());
-        holder.txt_destination.setText(currentItem.getEnding_lat());
-        //        holder.txt_date.setText(currentItem.getDate());
-        // holder.txt_time.setText(currentItem.getTime());
-        //holder.txt_tripDetails.setText(currentItem.getTrip_detail());
+                if(model.getProfile_img() == null){
+                    holder.passenger_img.setImageResource(R.drawable.default_pic);
+                }else {
+                    Picasso.get().load(model.getProfile_img()).into(holder.passenger_img);
+                }
+            }
 
-//        holder.txt_driverName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(mContext, DriverProfile.class);
-//                mContext.startActivity(i);
-//            }
-//        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        Toast.makeText(mContext, "" + currentItem.getId(), Toast.LENGTH_SHORT).show();
+
+       holder.txt_carType.setText(currentItem.getRide_type());
+
+        holder.txt_currentLocation.setText(currentItem.getStarting_point());
+        holder.txt_destination.setText(currentItem.getEnding_point());
+        holder.txt_date.setText(currentItem.getDate());
+
+
+        holder.txt_driverName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Intent i = new Intent(mContext, DriverProfile.class);
+                //mContext.startActivity(i);
+            }
+        });
 
     }
 
@@ -72,17 +103,20 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
         TextView txt_driverName,txt_rate,txt_carType,txt_seats_available,txt_date,txt_time,
                 txt_tripDetails,txt_currentLocation, txt_destination;
 
+        ImageView passenger_img;
 
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            txt_driverName = itemView.findViewById(R.id.txt_driver_name);
+            passenger_img  = itemView.findViewById(R.id.passenger_img);
 
+            txt_driverName = itemView.findViewById(R.id.txt_driver_name);
+            txt_carType = itemView.findViewById(R.id.txt_cartype);
             txt_currentLocation = itemView.findViewById(R.id.txt_current_location);
             txt_destination = itemView.findViewById(R.id.txt_destination);
-            //  txt_date = itemView.findViewById(R.id.txt_date);
-            txt_time = itemView.findViewById(R.id.txt_time);
+              txt_date = itemView.findViewById(R.id.txt_date);
+           // txt_time = itemView.findViewById(R.id.txt_time);
             //txt_tripDetails = itemView.findViewById(R.id.txt_round_trip);
         }
     }
