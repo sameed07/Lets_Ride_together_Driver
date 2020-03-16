@@ -25,12 +25,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.PassengerPostsAdapter;
+import Common.Common;
 import Model.PassengerPostedModel;
+import Model.UserModel;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -57,6 +60,25 @@ public class CarpoolHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view  =  inflater.inflate(R.layout.fragment_carpool_home_fragmet, container, false);
 
+        //toolbar
+        FirebaseDatabase mdata = FirebaseDatabase.getInstance();
+        DatabaseReference ref = mdata.getReference("Users").child("Drivers").child(Common.currentDriver.getuId());
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserModel model = dataSnapshot.getValue(UserModel.class);
+
+                //Toast.makeText(DriverProfile.this, "" + model.getName(), Toast.LENGTH_SHORT).show();
+                txt_toolbar.setText(model.getName());
+
+                Picasso.get().load(model.getProfile_img()).into(user_profileImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         //firebase init
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("PostAsPassenger");
@@ -83,7 +105,7 @@ public class CarpoolHomeFragment extends Fragment {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     PassengerPostedModel post = postSnapshot.getValue(PassengerPostedModel.class);
                     pList.add(post);
-                    Toast.makeText(getContext(), "" + post.getRide_type(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(), "" + post.getRide_type(), Toast.LENGTH_SHORT).show();
                     PassengerPostsAdapter adapter = new PassengerPostsAdapter(getContext(), pList);
                     postlist_recycler.setAdapter(adapter);
 
