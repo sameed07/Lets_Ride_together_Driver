@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
 
-                    mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    mRef.orderByChild("email").equalTo(edt_email.getText().toString().trim()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
