@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lets_ride_together_driver.Activities.PassgengerProfile;
 import com.example.lets_ride_together_driver.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,7 +52,7 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
     @Override
     public void onBindViewHolder(@NonNull final PassengerPostsAdapter.ViewHolder holder, int position) {
 
-        PassengerPostedModel currentItem = exampleListFull.get(position);
+        final PassengerPostedModel currentItem = exampleListFull.get(position);
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mRef = mDatabase.getReference("Users").child("Passengers").child(currentItem.getId());
@@ -74,7 +76,7 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
         });
 
 
-        Toast.makeText(mContext, "" + currentItem.getId(), Toast.LENGTH_SHORT).show();
+
 
        holder.txt_carType.setText(currentItem.getRide_type());
 
@@ -91,6 +93,18 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
             }
         });
 
+        holder.btn_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(mContext, PassgengerProfile.class);
+                i.putExtra("driver_id",currentItem.getId());
+                i.putExtra("post_key",currentItem.getPost_id());
+                mContext.startActivity(i);
+
+            }
+        });
+
     }
 
     @Override
@@ -103,6 +117,7 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
         TextView txt_driverName,txt_rate,txt_carType,txt_seats_available,txt_date,txt_time,
                 txt_tripDetails,txt_currentLocation, txt_destination;
 
+        Button btn_request;
         ImageView passenger_img;
 
         public ViewHolder(@NonNull View itemView) {
@@ -110,12 +125,12 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
             super(itemView);
 
             passenger_img  = itemView.findViewById(R.id.passenger_img);
-
+            btn_request = itemView.findViewById(R.id.btn_request);
             txt_driverName = itemView.findViewById(R.id.txt_driver_name);
             txt_carType = itemView.findViewById(R.id.txt_cartype);
             txt_currentLocation = itemView.findViewById(R.id.txt_current_location);
             txt_destination = itemView.findViewById(R.id.txt_destination);
-              txt_date = itemView.findViewById(R.id.txt_date);
+            txt_date = itemView.findViewById(R.id.txt_date);
            // txt_time = itemView.findViewById(R.id.txt_time);
             //txt_tripDetails = itemView.findViewById(R.id.txt_round_trip);
         }

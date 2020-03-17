@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.PassgengerProfile">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/toolbar_bg"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/white"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/back_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_marginTop="12sp"/>
+
+                <TextView
+                    android:layout_toRightOf="@+id/back_img"
+                    android:id="@+id/txt_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rider Profile"
+                    android:paddingRight="14dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="12sp"
+                    />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/fvrt_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity=""
+                    android:layout_marginTop="12sp"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_favorite_border_black_24dp" />
+
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/driver_profile_img"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width=".5dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/default_profile"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="12dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:layout_marginLeft="18dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_driver_name"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Passenger Name "
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="21sp"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="24dp"
+            android:orientation="vertical">
+
+            <RatingBar
+                android:layout_gravity="end"
+                android:progressTint="@color/duskYellow"
+                android:progressBackgroundTint="@color/light_gray"
+                android:layout_marginTop="21dp"
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0"
+                android:rating="5.0"
+                style="?android:attr/ratingBarStyleSmall"
+                />
+            <TextView
+                android:layout_marginRight="12dp"
+                android:gravity="end"
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70 Reviews"
+                android:maxLines="1"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:layout_marginTop="4sp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:layout_marginRight="12sp"
+        android:layout_marginLeft="12sp"
+        >
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:id="@+id/MyTabs"
+            app:tabGravity="center"
+            app:tabTextColor="#818181"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/black"
+            android:layout_height="?attr/actionBarSize"
+            app:tabTextAppearance="@style/MineCustomTabText" />
+    </androidx.cardview.widget.CardView>
+
+    <include layout="@layout/passenger_content_profile"/>
+
+</LinearLayout>

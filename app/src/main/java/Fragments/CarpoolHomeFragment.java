@@ -104,6 +104,7 @@ public class CarpoolHomeFragment extends Fragment {
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     PassengerPostedModel post = postSnapshot.getValue(PassengerPostedModel.class);
+                    post.setPost_id(postSnapshot.getKey());
                     pList.add(post);
                   //  Toast.makeText(getContext(), "" + post.getRide_type(), Toast.LENGTH_SHORT).show();
                     PassengerPostsAdapter adapter = new PassengerPostsAdapter(getContext(), pList);
