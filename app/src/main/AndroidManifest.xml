@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ViewPostActivity"></activity>
-        <activity android:name=".Activities.PassgengerProfile" />
+        <activity android:name=".Activities.PassengerProfileActivity"></activity>
+        <activity android:name=".Activities.ViewPostActivity" />
+        <activity android:name=".Activities.PassengerRequestActivity" />
         <activity android:name=".Activities.PostRequestActivity" />
         <activity android:name=".Activities.EditProfile" />
         <activity android:name=".Activities.ProfileActivity" />

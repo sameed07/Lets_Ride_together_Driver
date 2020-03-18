@@ -25,7 +25,7 @@ import Fragments.PassengerDetailFragment;
 import Fragments.PassengerReviewFragment;
 import Model.UserModel;
 
-public class PassgengerProfile extends AppCompatActivity {
+public class PassengerRequestActivity extends AppCompatActivity {
 
     private String id, post_key;
 
@@ -42,7 +42,7 @@ public class PassgengerProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passgenger_profile);
+        setContentView(R.layout.activity_passgenger_request);
 
 
         id = getIntent().getStringExtra("driver_id");
@@ -61,15 +61,15 @@ public class PassgengerProfile extends AppCompatActivity {
         back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PassgengerProfile.this,CarpoolMainActivity.class));
+                startActivity(new Intent(PassengerRequestActivity.this,CarpoolMainActivity.class));
                 finish();
             }
         });
         MyTabs = (TabLayout)findViewById(R.id.MyTabs);
         MyPage = (ViewPager)findViewById(R.id.MyPage);
-        MyTabs.setSelectedTabIndicatorColor(Color.parseColor("#2AC940"));
+        //MyTabs.setSelectedTabIndicatorColor(Color.parseColor("#2AC940"));
 //        MyTabs.setSelectedTabIndicatorHeight((int) (1 * getResources().getDisplayMetrics().density));
-        MyTabs.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#000000"));
+       // MyTabs.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#000000"));
         // MyTabs.setPadding(10,10,10,10);
 
         MyTabs.setupWithViewPager(MyPage);
@@ -93,13 +93,23 @@ public class PassgengerProfile extends AppCompatActivity {
             }
         });
 
+        txt_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i  = new Intent(PassengerRequestActivity.this,PassengerProfileActivity.class);
+                i.putExtra("id",id);
+                startActivity(i);
+            }
+        });
+
     }
 
     public void SetUpViewPager (ViewPager viewpage){
         MyViewPageAdapter Adapter = new MyViewPageAdapter(getSupportFragmentManager());
 
-        Adapter.AddFragmentPage(new PassengerDetailFragment(post_key,id), "Driver Detail");
-        Adapter.AddFragmentPage(new PassengerReviewFragment(post_key,id), "Reviews");
+        Adapter.AddFragmentPage(new PassengerDetailFragment(post_key,id), "Post Detail");
+        //Adapter.AddFragmentPage(new PassengerReviewFragment(post_key,id), "Reviews");
 
 
         viewpage.setAdapter(Adapter);

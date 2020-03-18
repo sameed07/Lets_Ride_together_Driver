@@ -8,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lets_ride_together_driver.Activities.PassgengerProfile;
+import com.example.lets_ride_together_driver.Activities.PassengerRequestActivity;
 import com.example.lets_ride_together_driver.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -97,7 +96,7 @@ public class PassengerPostsAdapter extends RecyclerView.Adapter<PassengerPostsAd
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(mContext, PassgengerProfile.class);
+                Intent i = new Intent(mContext, PassengerRequestActivity.class);
                 i.putExtra("driver_id",currentItem.getId());
                 i.putExtra("post_key",currentItem.getPost_id());
                 mContext.startActivity(i);

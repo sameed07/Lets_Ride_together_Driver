@@ -7,13 +7,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-;
-
-public class MyViewPageAdapter extends FragmentPagerAdapter {
+public class MyProfileViewPager extends FragmentPagerAdapter {
     private List<Fragment> MyFragment = new ArrayList<>();
     private List<String> MyPageTittle = new ArrayList<>();
 
-    public MyViewPageAdapter(FragmentManager manager){
+    public MyProfileViewPager(FragmentManager manager){
         super(manager);
     }
 
@@ -36,6 +34,6 @@ public class MyViewPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 }

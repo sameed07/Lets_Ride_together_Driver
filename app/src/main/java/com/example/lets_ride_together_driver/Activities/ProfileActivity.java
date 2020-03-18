@@ -35,6 +35,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+import Adapter.MyProfileViewPager;
 import Adapter.MyViewPageAdapter;
 import Common.Common;
 import Fragments.UserProfileDetailFragment;
@@ -137,7 +138,7 @@ public class ProfileActivity extends AppCompatActivity {
         SetUpViewPager(MyPage);
     }
     public void SetUpViewPager (ViewPager viewpage){
-        MyViewPageAdapter Adapter = new MyViewPageAdapter(getSupportFragmentManager());
+        MyProfileViewPager Adapter = new MyProfileViewPager(getSupportFragmentManager());
 
         Adapter.AddFragmentPage(new UserProfileDetailFragment(), "Personal Detail");
         Adapter.AddFragmentPage(new UserReviewFragment(), "Reviews");
