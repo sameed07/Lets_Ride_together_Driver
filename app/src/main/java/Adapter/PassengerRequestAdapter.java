@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lets_ride_together_driver.Activities.PassengerProfileActivity;
 import com.example.lets_ride_together_driver.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,7 +51,7 @@ public class PassengerRequestAdapter extends RecyclerView.Adapter<PassengerReque
     @Override
     public void onBindViewHolder(@NonNull final PassengerRequestAdapter.ViewHolder holder, int position) {
 
-        DriverRequest request = mList.get(position);
+        final DriverRequest request = mList.get(position);
 
         FirebaseDatabase mData = FirebaseDatabase.getInstance();
         DatabaseReference mRef = mData.getReference("Users").child("Passengers");
@@ -73,6 +75,15 @@ public class PassengerRequestAdapter extends RecyclerView.Adapter<PassengerReque
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        holder.txt_passenger_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, PassengerProfileActivity.class);
+                i.putExtra("id",request.getSender_id());
+                mContext.startActivity(i);
             }
         });
 
