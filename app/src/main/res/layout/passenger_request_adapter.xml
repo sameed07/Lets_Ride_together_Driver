@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_profile_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#4CAF50"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_passenger_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passenger Name"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="16sp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="Accept"
+        android:textSize="10sp"
+        android:padding="12dp"
+        android:background="@drawable/btn_background"
+        android:textColor="@color/colorPrimary"
+        android:layout_gravity="clip_horizontal"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"/>
+
+</RelativeLayout>

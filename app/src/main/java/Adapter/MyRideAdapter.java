@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lets_ride_together_driver.R;
+import com.example.lets_ride_together_driver.Activities.ViewPostActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,13 +87,13 @@ public class MyRideAdapter extends RecyclerView.Adapter<MyRideAdapter.ViewHolder
         //holder.txt_tripDetails.setText(currentItem.getTrip_detail());
 
 
-        holder.btn_request.setOnClickListener(new View.OnClickListener() {
+        holder.btn_view_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(mContext, DriverProfile.class);
-//                i.putExtra("driver_id",currentItem.getId());
-//                i.putExtra("post_key",currentItem.getPostKey());
-//                mContext.startActivity(i);
+                  Intent i = new Intent(mContext, ViewPostActivity.class);
+                 i.putExtra("driver_id",currentItem.getId());
+                  i.putExtra("post_key",currentItem.getPostKey());
+                 mContext.startActivity(i);
             }
         });
         holder.txt_driverName.setOnClickListener(new View.OnClickListener() {
@@ -113,12 +114,12 @@ public class MyRideAdapter extends RecyclerView.Adapter<MyRideAdapter.ViewHolder
         TextView txt_driverName,txt_rate,txt_carType,txt_seats_available,txt_date,
         txt_currentLocation, txt_destination;
 
-        Button btn_request;
+        Button btn_view_post;
         ImageView driver_profile;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            btn_request = itemView.findViewById(R.id.btn_request);
+            btn_view_post = itemView.findViewById(R.id.btn_request);
             driver_profile = itemView.findViewById(R.id.driver_profile);
             txt_driverName = itemView.findViewById(R.id.txt_driver_name);
             txt_carType = itemView.findViewById(R.id.txt_car_type);
