@@ -25,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import Common.Common;
 import Model.DriverPost;
 import Model.PassengerPostedModel;
 import Model.UserModel;
@@ -257,7 +261,26 @@ public class PassengerDetailFragment extends Fragment {
         });
 
 
+        Button btn_request = dialog.findViewById(R.id.btn_confirm);
 
+        btn_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase myData = FirebaseDatabase.getInstance();
+                DatabaseReference dataRef = myData.getReference("PassengerRequest");
+
+                Map<String, String> map = new HashMap<>();
+                map.put("post_id",post_id);
+                map.put("passenger_id",id);
+                map.put("sender_id", Common.currentDriver.getuId());
+                map.put("status","Pending");
+                dataRef.push().setValue(map);
+
+                Toast.makeText(getContext(), "Request Sent!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
 
         txt_start.setText(txt_startingpoint.getText().toString());
         txt_end.setText(txt_endingpoint.getText().toString());

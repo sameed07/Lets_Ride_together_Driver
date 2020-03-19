@@ -93,7 +93,7 @@ public class PassengerRequestActivity extends AppCompatActivity {
             }
         });
 
-        txt_name.setOnClickListener(new View.OnClickListener() {
+        txt_name.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
