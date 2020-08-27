@@ -56,6 +56,7 @@ public class VerificationActivity extends AppCompatActivity {
     String vehicle_number;
     String vehicle_name;
     String cartype;
+    String doc_url;
 
 
     @Override
@@ -81,6 +82,7 @@ public class VerificationActivity extends AppCompatActivity {
         vehicle_name = getIntent().getStringExtra("vehicle_name");
         vehicle_number = getIntent().getStringExtra("vehicle_number");
         cartype = getIntent().getStringExtra("car_type");
+        doc_url = getIntent().getStringExtra("vehicle_doc");
 
 
         Toast.makeText(this, "" + cnic + vehicle_number + vehicle_name + cartype, Toast.LENGTH_SHORT).show();
@@ -202,7 +204,7 @@ public class VerificationActivity extends AppCompatActivity {
 
     private void sendDataToFirebase(){
 
-
+        cnic.trim();
         UserModel user = new UserModel();
         user.setName(name);
         user.setEmail(email);
@@ -214,6 +216,7 @@ public class VerificationActivity extends AppCompatActivity {
         user.setVehicle_name(vehicle_name);
         user.setVehicle_number(vehicle_number);
         user.setProfile_status(false);
+        user.setCar_doc(doc_url);
         user.setuId(mAuth.getCurrentUser().getUid());
 
         Common.currentUser = user.getuId();

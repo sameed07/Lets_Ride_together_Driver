@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }else{
 
                                         Snackbar snackbar = Snackbar
-                                                .make(relativeLayout, "your account disable by admin", Snackbar.LENGTH_LONG);
+                                                .make(relativeLayout, "your account is under review", Snackbar.LENGTH_LONG);
 
                                         snackbar.show();
                                         mProgressbar.setVisibility(View.GONE);

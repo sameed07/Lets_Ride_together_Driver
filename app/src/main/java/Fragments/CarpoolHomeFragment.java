@@ -71,7 +71,13 @@ public class CarpoolHomeFragment extends Fragment {
                 //Toast.makeText(DriverProfile.this, "" + model.getName(), Toast.LENGTH_SHORT).show();
                 txt_toolbar.setText(model.getName());
 
-                Picasso.get().load(model.getProfile_img()).into(user_profileImage);
+                if(model.getProfile_img() == null){
+                    user_profileImage.setImageResource(R.drawable.default_pic);
+                }else {
+                    Picasso.get().load(model.getProfile_img()).into(user_profileImage);
+                }
+
+               // Picasso.get().load(model.getProfile_img()).into(user_profileImage);
             }
 
             @Override

@@ -14,13 +14,14 @@ public class UserModel  {
     private String vehicle_name;
     private String vehicle_number;
     private String car_type;
+    private String car_doc;
     private Boolean profile_status = false;
 
     public UserModel() {
     }
 
     public UserModel(String profile_img,String uId, String name, String email, String phone, String password,
-                     String city, String cnic, String vehicle_name, String vehicle_number, String car_type) {
+                     String city, String cnic, String vehicle_name, String vehicle_number, String car_type,String car_doc) {
         this.uId = uId;
         this.name = name;
         this.email = email;
@@ -32,6 +33,14 @@ public class UserModel  {
         this.vehicle_number = vehicle_number;
         this.car_type = car_type;
         this.profile_img = profile_img;
+    }
+
+    public String getCar_doc() {
+        return car_doc;
+    }
+
+    public void setCar_doc(String car_doc) {
+        this.car_doc = car_doc;
     }
 
     public String getProfile_img() {

@@ -28,12 +28,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -42,6 +46,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import Common.Common;
+import Model.UserModel;
 
 public class EditProfile extends AppCompatActivity {
 
@@ -81,7 +86,7 @@ public class EditProfile extends AppCompatActivity {
         driver_img = findViewById(R.id.driver_profile_img);
         edt_username = findViewById(R.id.edt_username);
         btn_save_changes = findViewById(R.id.btn_save_changes);
-
+        getCurrentInfo();
         askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,WRITE_EXST);
         askForPermission(Manifest.permission.READ_EXTERNAL_STORAGE,READ_EXST);
         driver_img.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +121,31 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
+    public void getCurrentInfo(){
 
+        FirebaseDatabase mdata = FirebaseDatabase.getInstance();
+        DatabaseReference mInfo = mdata.getReference("Users").child("Drivers").
+                child(Common.currentDriver.getuId());
+
+        mInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                UserModel model =  dataSnapshot.getValue(UserModel.class);
+                if(model.getProfile_img() == null){
+                    driver_img.setImageResource(R.drawable.default_pic);
+                }else {
+                    Picasso.get().load(model.getProfile_img()).into(driver_img);
+                }
+                edt_username.setText(model.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void chooseImage() {
         Intent intent = new Intent();
