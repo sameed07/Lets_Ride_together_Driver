@@ -1,17 +1,18 @@
 package com.example.lets_ride_together_driver.Activities;
 
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.example.lets_ride_together_driver.Adapter.PassengerRequestAdapter;
+import com.example.lets_ride_together_driver.Model.DriverPost;
+import com.example.lets_ride_together_driver.Model.DriverRequest;
 import com.example.lets_ride_together_driver.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,14 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
-
-import Adapter.PassengerRequestAdapter;
-import Fragments.RidesFragment;
-import Model.DriverPost;
-import Model.DriverRequest;
 
 public class ViewPostActivity extends AppCompatActivity {
 

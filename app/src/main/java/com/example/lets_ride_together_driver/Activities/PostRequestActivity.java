@@ -1,8 +1,5 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -25,19 +22,18 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.lets_ride_together_driver.Common.Common;
 import com.example.lets_ride_together_driver.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import Common.Common;
-import okhttp3.internal.Util;
 
 public class PostRequestActivity extends AppCompatActivity {
 
@@ -280,7 +276,7 @@ public class PostRequestActivity extends AppCompatActivity {
 
             String name = Common.currentDriver.getName();
             String profile_url = Common.currentDriver.getProfile_img();
-            String carName = Common.currentDriver.getCar_type();
+            String carName = "car";
             String price = edt_fare.getText().toString();
             String seats = rd_select_seat.getText().toString();
             String trip = rd_select_trip.getText().toString();

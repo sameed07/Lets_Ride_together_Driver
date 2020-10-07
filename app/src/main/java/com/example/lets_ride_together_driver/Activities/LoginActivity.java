@@ -14,17 +14,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.lets_ride_together_driver.Common.Common;
+import com.example.lets_ride_together_driver.NewModel.User;
 import com.example.lets_ride_together_driver.R;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import Common.Common;
-import Model.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.my_id);
 
         db = FirebaseDatabase.getInstance();
-        mRef = db.getReference("Users").child("Drivers");
+        mRef = db.getReference(Common.user_driver_tbl);
 
 
 
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("dxdiag1", "login success0");
 
                 mProgressbar.setVisibility(View.VISIBLE);
                 final String email = edt_email.getText().toString();
@@ -77,51 +79,89 @@ public class LoginActivity extends AppCompatActivity {
                     mProgressbar.setVisibility(View.GONE);
                 }
                 else {
+                    Log.i("dxdiag", "login success1");
 
-                    mRef.orderByChild("email").equalTo(edt_email.getText().toString().trim()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.i("dxdiag", "login success882 " + FirebaseAuth.getInstance().getUid());
+
+                            if (task.isSuccessful()) {
+                                Log.i("dxdiag", "login success3");
+
+                                mRef.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Log.i("dxdiag", "login success124 " + dataSnapshot);
+
+//                                    avatarUri:
+//                                    city:
+//                                    email:
+//                                    name:
+//                                    password:
+//                                    phone:
+//                                    profile_img:
+//                                    uId:
 
 
+                                        //       Log.i("dxdiag", "login success5 "+model.getProfile_img());
 
-                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                                        if (email.equals(dataSnapshot.child("email").getValue()) && password.equals(dataSnapshot.child("password").getValue())) {
 
-                                UserModel model = data.getValue(UserModel.class);
-                                if(email.equals(model.getEmail()) && password.equals(model.getPassword())) {
+                                        //  if (model.getProfile_status()) {
+                                        Log.i("dxdiag", "login success");
 
-                                    if(model.getProfile_status()){
-                                    Log.i("dxdiag", "login success");
-
-                                    mProgressbar.setVisibility(View.GONE);
-
-                                    Common.currentDriver = model;
-
-                                    startActivity(new Intent(LoginActivity.this,SelectModeActivity.class));
-                                    Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }else{
-
-                                        Snackbar snackbar = Snackbar
-                                                .make(relativeLayout, "your account is under review", Snackbar.LENGTH_LONG);
-
-                                        snackbar.show();
                                         mProgressbar.setVisibility(View.GONE);
+//
+                                        Common.currentDriver = new User(dataSnapshot.child("uId").getValue().toString()
+                                                , dataSnapshot.child("name").getValue().toString()
+                                                , dataSnapshot.child("email").getValue().toString()
+                                                , dataSnapshot.child("phone").getValue().toString()
+                                                , dataSnapshot.child("password").getValue().toString()
+                                                , dataSnapshot.child("city").getValue().toString()
+                                                , dataSnapshot.child("rates").getValue().toString()
+                                                , dataSnapshot.child("car_type").getValue().toString()
+                                                , dataSnapshot.child("profile_img").getValue().toString());
+
+//                                                Common.currentUser = new User(dataSnapshot.child("uId").getValue().toString()
+//                                                        ,dataSnapshot.child("name").getValue().toString()
+//                                                        ,dataSnapshot.child("email").getValue().toString()
+//                                                        ,dataSnapshot.child("phone").getValue().toString()
+//                                                        ,dataSnapshot.child("password").getValue().toString()
+//                                                        ,dataSnapshot.child("city").getValue().toString()
+//                                                        ,dataSnapshot.child("profile_img").getValue().toString());
+
+                                        startActivity(new Intent(LoginActivity.this, SelectModeActivity.class));
+                                        Toast.makeText(LoginActivity.this, "Login success " + Common.currentDriver.getCity(), Toast.LENGTH_SHORT).show();
+                                        return;
+//                                            } else {
+//
+//                                                Snackbar snackbar = Snackbar
+//                                                        .make(relativeLayout, "your account is under review", Snackbar.LENGTH_LONG);
+//
+//                                                snackbar.show();
+//                                                mProgressbar.setVisibility(View.GONE);
+//                                            }
+//                                        } else {
+//
+//
+//                                            Toast.makeText(LoginActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
+//                                            mProgressbar.setVisibility(View.GONE);
+//
+//                                    }
                                     }
-                                }
-                                else {
 
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                    Toast.makeText(LoginActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
-                                    mProgressbar.setVisibility(View.GONE);
-                                }
+                                    }
+                                });
+
                             }
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
                     });
+
+
                 }
             }
         });

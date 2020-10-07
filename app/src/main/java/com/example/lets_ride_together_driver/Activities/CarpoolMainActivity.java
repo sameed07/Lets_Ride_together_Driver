@@ -1,21 +1,20 @@
 package com.example.lets_ride_together_driver.Activities;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
+import com.example.lets_ride_together_driver.Fragments.CarpoolHomeFragment;
+import com.example.lets_ride_together_driver.Fragments.ChatFragment;
+import com.example.lets_ride_together_driver.Fragments.ProfileFragment;
+import com.example.lets_ride_together_driver.Fragments.RideRequestFragment;
+import com.example.lets_ride_together_driver.Fragments.RidesFragment;
 import com.example.lets_ride_together_driver.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import Fragments.CarpoolHomeFragment;
-import Fragments.ChatFragment;
-import Fragments.ProfileFragment;
-import Fragments.RideRequestFragment;
-import Fragments.RidesFragment;
 
 public class CarpoolMainActivity extends AppCompatActivity {
 

@@ -1,8 +1,5 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +9,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lets_ride_together_driver.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.lets_ride_together_driver.Common.Common;
+import com.example.lets_ride_together_driver.Model.UserModel;
+import com.example.lets_ride_together_driver.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,9 +31,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
-
-import Common.Common;
-import Model.UserModel;
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -219,7 +217,7 @@ public class VerificationActivity extends AppCompatActivity {
         user.setCar_doc(doc_url);
         user.setuId(mAuth.getCurrentUser().getUid());
 
-        Common.currentUser = user.getuId();
+        Common.currentUser = user;
 
         mRef.child(user.getuId()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

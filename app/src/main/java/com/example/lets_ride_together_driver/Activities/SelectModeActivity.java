@@ -60,7 +60,7 @@ public class SelectModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SelectModeActivity.this,Instant_HomeActivity.class));
+                startActivity(new Intent(SelectModeActivity.this, DriverHome.class));
                 finish();
             }
 

@@ -1,12 +1,6 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.accounts.Account;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,9 +9,6 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.provider.Settings;
-import com.google.android.libraries.places.api.Places;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,23 +19,23 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lets_ride_together_driver.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.example.lets_ride_together_driver.Common.Common;
+import com.example.lets_ride_together_driver.R;
+import com.example.lets_ride_together_driver.Remote.IGoogleApi;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -67,17 +58,11 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,8 +74,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Common.Common;
-import Remote.IGoogleApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -606,7 +589,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
             Map<String, Object> data = new HashMap<>();
             data.put("lat", mlastLocation.getLatitude());
             data.put("lng", mlastLocation.getLongitude());
-            data.put("car_type",Common.currentDriver.getCar_type());
+            data.put("car_type", "car");
 
 
             mRef.child(uId).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -659,15 +642,15 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 //                        public void onSuccess(Location location) {
 //
 //
-//                            Common.mLastLocation = location;
+//                            com.example.lets_ride_together_driver.Common.mLastLocation = location;
 //
 //
-//                            if (Common.mLastLocation != null) {
+//                            if (com.example.lets_ride_together_driver.Common.mLastLocation != null) {
 //
 //                                if (offline_switch.isChecked()) {
 //
-//                                    latitude = Common.mLastLocation.getLatitude();
-//                                    longitude = Common.mLastLocation.getLongitude();
+//                                    latitude = com.example.lets_ride_together_driver.Common.mLastLocation.getLatitude();
+//                                    longitude = com.example.lets_ride_together_driver.Common.mLastLocation.getLongitude();
 //
 //
 //                                    LatLng center = new LatLng(latitude, longitude);
@@ -689,7 +672,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 //
 //
 //
-//                                            mRef = FirebaseDatabase.getInstance().getReference("Drivers").child(Common.currentDriver.getCar_type());
+//                                            mRef = FirebaseDatabase.getInstance().getReference("Drivers").child(com.example.lets_ride_together_driver.Common.currentDriver.getCar_type());
 //                                            geoFire = new GeoFire(mRef);
 //                                            geoFire.setLocation(uId, new GeoLocation(latitude, longitude), new GeoFire.CompletionListener() {
 //                                                @Override
@@ -703,7 +686,7 @@ public class Instant_HomeActivity extends AppCompatActivity implements OnMapRead
 //                                                    Log.d("lat = ", "" + latitude);
 //
 //
-//                                                    LatLng latLng = new LatLng(Common.mLastLocation.getLatitude(), Common.mLastLocation.getLongitude());
+//                                                    LatLng latLng = new LatLng(com.example.lets_ride_together_driver.Common.mLastLocation.getLatitude(), com.example.lets_ride_together_driver.Common.mLastLocation.getLongitude());
 //                                                    MarkerOptions markerOptions = new MarkerOptions();
 //                                                    markerOptions.position(latLng);
 //                                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.driver_car));

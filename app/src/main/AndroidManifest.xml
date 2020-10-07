@@ -40,6 +40,67 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+
+
+
+
+
+
+
+        <activity android:name=".Activities.AuctionAmountSendActivity" />
+
+
+        <activity android:name=".Activities.HomePageMap" />
+        <activity android:name=".AllPostsWork.ListAllPosts" />
+        <activity android:name=".AllPostsWork.PostTravelStep2ForDriver" />
+        <activity android:name=".AllPostsWork.PostYourTravel" />
+        <activity android:name=".AllPostsWork.ScreenAfterPostIsSelectedFromList" />
+        <activity android:name=".AllPostsWork.Select_location_for_Post" />
+        <activity android:name=".AllPostsWork.ShowRouteOnMap" />
+        <activity android:name=".ProfilePageStuff.ProfilePage" />
+        <activity android:name=".ProfilePageStuff.RecivedRequestsActivity" />
+        <activity android:name=".Requests.AcceptActivityPart2" />
+        <activity android:name=".Requests.AllRequests" />
+
+
+
+
+        <activity android:name=".Activities.TripHistoryActivity" />
+        <activity
+            android:name=".Activities.DriverHome"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Activities.TripDetails"
+        />
+
+        <activity android:name=".Activities.CustomerCall" />
+        <activity android:name=".ChatStuff.MessageMainActivity" />
+        <activity android:name=".ChatStuff.MessageActivity" />
+
+        <service android:name=".Service.MyFireBaseMessaging">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".Activities.DriverTracking"
+            android:label="@string/title_activity_driver_tracking" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+
+
+
+
     </application>
 
 </manifest>

@@ -1,15 +1,18 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.lets_ride_together_driver.Adapter.MyProfileViewPager;
+import com.example.lets_ride_together_driver.Fragments.PassengerProfileDetailFragment;
+import com.example.lets_ride_together_driver.Fragments.UserReviewFragment;
+import com.example.lets_ride_together_driver.Model.UserModel;
 import com.example.lets_ride_together_driver.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -18,12 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import Adapter.MyProfileViewPager;
-import Fragments.PassengerProfileDetailFragment;
-import Fragments.UserProfileDetailFragment;
-import Fragments.UserReviewFragment;
-import Model.UserModel;
 
 public class PassengerProfileActivity extends AppCompatActivity {
 

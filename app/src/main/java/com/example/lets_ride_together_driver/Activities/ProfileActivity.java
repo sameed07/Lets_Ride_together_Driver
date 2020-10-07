@@ -1,10 +1,5 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -14,11 +9,17 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.lets_ride_together_driver.Adapter.MyProfileViewPager;
+import com.example.lets_ride_together_driver.Common.Common;
+import com.example.lets_ride_together_driver.Fragments.UserProfileDetailFragment;
+import com.example.lets_ride_together_driver.Fragments.UserReviewFragment;
+import com.example.lets_ride_together_driver.Model.UserModel;
 import com.example.lets_ride_together_driver.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,21 +27,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.UUID;
-
-import Adapter.MyProfileViewPager;
-import Adapter.MyViewPageAdapter;
-import Common.Common;
-import Fragments.UserProfileDetailFragment;
-import Fragments.UserReviewFragment;
-import Model.UserModel;
 
 public class ProfileActivity extends AppCompatActivity {
 

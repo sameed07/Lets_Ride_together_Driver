@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.PassengerReviewFragment">
+    tools:context="com.example.lets_ride_together_driver.Fragments.PassengerReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+
+        <RadioButton
+            android:id="@+id/rdi_uberX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UberX"
+            />
+        <RadioButton
+            android:id="@+id/rdi_uber_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uber Black"
+            />
+
+    </RadioGroup>
+</androidx.cardview.widget.CardView>

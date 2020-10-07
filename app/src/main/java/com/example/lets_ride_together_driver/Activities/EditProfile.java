@@ -1,32 +1,29 @@
 package com.example.lets_ride_together_driver.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.example.lets_ride_together_driver.Common.Common;
+import com.example.lets_ride_together_driver.Model.UserModel;
 import com.example.lets_ride_together_driver.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,19 +31,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import Common.Common;
-import Model.UserModel;
 
 public class EditProfile extends AppCompatActivity {
 
@@ -188,7 +180,7 @@ public class EditProfile extends AppCompatActivity {
 //                        Map<String, Object> map = new HashMap<>();
 //                        map.put("name", name);
 //                        map.put("profile_img", mUrl);
-//                        mRef.child(Common.currentDriver.getuId()).setValue(map);
+//                        mRef.child(com.example.lets_ride_together_driver.Common.currentDriver.getuId()).setValue(map);
 //                        progressDialog.dismiss();
 //                        Toast.makeText(EditProfile.this, "Saved", Toast.LENGTH_SHORT).show();
 ////                        edtNotes.setText("");
